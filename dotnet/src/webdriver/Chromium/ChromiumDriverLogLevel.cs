@@ -19,10 +19,15 @@
 namespace OpenQA.Selenium.Chromium
 {
     /// <summary>
-    /// Represents the <see href="https://source.chromium.org/chromium/chromium/src/+/master:chrome/test/chromedriver/logging.cc">log levels</see> defined by ChromeDriver.
+    /// Represents the <see href="https://source.chromium.org/chromium/chromium/src/+/master:chrome/test/chromedriver/logging.cc">log levels</see> defined by ChromiumDriver.
     /// </summary>
     public enum ChromiumDriverLogLevel
     {
+        /// <summary>
+        /// Represents the default log level that is used by the driver when no log level is specified.
+        /// </summary>
+        Default,
+
         /// <summary>
         /// Represents the ALL log level.
         /// </summary>

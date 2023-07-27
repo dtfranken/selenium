@@ -30,6 +30,7 @@ namespace OpenQA.Selenium.Chromium
     {
         private const string DefaultChromeDriverServiceExecutableName = "chromedriver";
 
+        private ChromiumDriverLogLevel logLevel = ChromiumDriverLogLevel.Default;
         private string logPath = string.Empty;
         private string urlPathPrefix = string.Empty;
         private string portServerAddress = string.Empty;
@@ -118,6 +119,15 @@ namespace OpenQA.Selenium.Chromium
         }
 
         /// <summary>
+        /// Gets or sets the log level used by the driver.
+        /// </summary>
+        public ChromiumDriverLogLevel LogLevel
+        {
+            get { return this.logLevel; }
+            set { this.logLevel = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the comma-delimited list of IP addresses that are approved to
         /// connect to this instance of the Chrome driver. Defaults to an empty string,
         /// which means only the local loopback address can connect.
@@ -159,6 +169,11 @@ namespace OpenQA.Selenium.Chromium
                 if (this.enableAppendLog)
                 {
                     argsBuilder.Append(" --append-log");
+                }
+
+                if (this.logLevel != ChromiumDriverLogLevel.Default)
+                {
+                    argsBuilder.AppendFormat(CultureInfo.InvariantCulture, " --log-level={0}", this.logLevel.ToString().ToUpperInvariant());
                 }
 
                 if (!string.IsNullOrEmpty(this.logPath))
